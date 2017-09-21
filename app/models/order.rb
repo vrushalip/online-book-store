@@ -5,9 +5,9 @@ class Order < ActiveRecord::Base
   ##Methods
 
   #For creating order items
-  def confirm_order(user)
+  def confirm_order
 		total_price = 0
-		cart_items = user.cart_items
+		cart_items = self.user.cart_items
 		cart_items.each do |cart_item|
       price = cart_item.quantity * cart_item.product.price
       total_price += price

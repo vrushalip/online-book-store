@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = current_user.orders.order("created_at asc")
+    @orders = current_user.orders.order(created_at: :desc)
   end
 
   def new
@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
   def confirm_order
     @order = current_user.orders.build
-    @order.confirm_order(current_user)
+    @order.confirm_order
     flash[:notice] = "Order has been placed successfully."
     redirect_to root_path
   end
