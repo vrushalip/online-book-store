@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OnlineBookStore</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/top_navbar' %>
+<div class="container" style="margin-top:100px">
+  <div id="notice">
+    <%= flash_messages %>    
+  </div>
+  <%= yield %>
+</div>
+</body>
+</html>

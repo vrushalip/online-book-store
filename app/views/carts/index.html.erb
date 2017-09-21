@@ -1,0 +1,69 @@
+<table class="table table-hover table-bordered">
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total Price</th>
+    <th></th>
+  </tr>
+  <tbody class='products'>
+    <% if @products.present? %>
+      <% @products.each do |product| %>
+        <tr id="<%= product.id %>">
+          <td><%= product.name %></td>
+          <td>
+            <%= number_field_tag :product_quantity, session[:cart]["#{product.id}"]["quantity"], class: 'update-quantity', min: 1 %>
+          </td>
+          <td><%= product.price %></td>
+          <td class='product-price'><%= session[:cart]["#{product.id}"]["price"] %></td>
+          <td>
+            <%= link_to remove_from_cart_path(product_id: product.id), remote: true, data: { confirm: "Are you sure you want to delete", method: :delete } do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="3" class="text-right">
+          Total Price:
+        </td>
+        <td colspan="3" class='total-price'>
+          <%= total_price %>
+        </td>
+      </tr>
+    <% elsif current_user.try(:cart_items).try(:present?) %>
+      <% current_user.cart_items.each do |cart_item| %>
+        <tr id="<%= cart_item.product.id %>">
+          <td><%= cart_item.product.name %></td>
+          <td>
+            <%= number_field_tag :product_quantity, cart_item.quantity, class: 'update-quantity', min: 1 %>
+          </td>
+          <td><%= cart_item.price/cart_item.quantity %></td>
+          <td class='product-price'><%= cart_item.price %></td>
+          <td>
+            <%= link_to remove_from_cart_path(product_id: cart_item.product.id), remote: true, data: { confirm: "Are you sure you want to delete", method: :delete } do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="3" class="text-right">
+          Total Price:
+        </td>
+        <td colspan="3" class='total-price'>
+          <%= total_price %>
+        </td>
+      </tr>
+    <% else %>
+      <tr>
+        <td colspan="6" class="text-center">Cart is empty</td>
+      </tr>
+    <% end %>    
+  </tbody>
+</table>
+<div class="row pull-right">
+  <% if current_user.try(:cart_items).try(:present?) || @products.present? %>
+    <%= link_to "Checkout", new_order_path, class: "btn btn-success checkout" %>
+  <% end %>
+</div>

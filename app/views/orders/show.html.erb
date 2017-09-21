@@ -1,0 +1,27 @@
+<h2>Order Details #<%= @order.id %></h2>
+<table class="table table-hover table-bordered">
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+  <tbody class='products'>
+    <% @order.order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.product.name %></td>
+        <td>
+          <%= order_item.quantity %>
+        </td>
+        <td><%= order_item.price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2" class="text-right">
+        Total Price:
+      </td>
+      <td colspan="2" class='total-price'>
+        <%= @order.total_price %>
+      </td>
+    </tr> 
+  </tbody>
+</table>
