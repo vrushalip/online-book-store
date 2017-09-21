@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     session[:cart].each do |product_id, attributes|
       cart_item = current_user.cart_items.where(product_id: product_id).first_or_initialize
       cart_item.quantity = cart_item.quantity.to_i + attributes["quantity"].to_i
-      cart_item.price = cart_item.price.to_f + attributes["price"].to_f
+      cart_item.price = attributes["price"].to_f
       cart_item.save
     end
     session[:cart] = {}

@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
         <li>
           <%= link_to carts_path do %>
-            <span id="product-quantity"><%= current_user.try(:cart_items).try(:length) || session[:cart].keys.length %></span>
+            <span id="product-quantity"><%= cart_size %></span>
             <i class="fa fa-shopping-cart fa-5"></i>
           <% end %>
         </li>

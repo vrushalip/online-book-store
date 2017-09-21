@@ -12,7 +12,7 @@
           <td>
             <%= cart_item.product.name %>
             <br/>
-            <% if (cart_item.price/cart_item.quantity) != cart_item.product.price %>
+            <% if cart_item.price != cart_item.product.price %>
               <span class="text-danger" style="font-size:10px;">*This product's price has been changed. Check before confirming order.</span>
             <% end %>
           </td>
@@ -20,7 +20,7 @@
             <%= cart_item.quantity %>
           </td>
           <td><%= cart_item.product.price %></td>
-          <td><%= cart_item.price %></td>
+          <td><%= total_product_price(cart_item) %></td>
         </tr>
       <% end %>
       <tr>

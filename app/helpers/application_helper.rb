@@ -3,7 +3,7 @@ module ApplicationHelper
     if current_user
       current_user.cart_items.map(&:price).inject(:+).to_f
     else
-      session[:cart].map {|k,v| v["price"] }.compact.sum
+      session[:cart].map {|k,v| total_product_price(v) }.compact.sum
     end
   end
 
@@ -19,5 +19,10 @@ module ApplicationHelper
       end)
     end
     nil
+  end
+
+  def cart_size
+    return current_user.cart_items.length if user_signed_in?
+    session[:cart].keys.length
   end
 end

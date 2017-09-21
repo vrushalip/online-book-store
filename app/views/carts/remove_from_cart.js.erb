@@ -5,7 +5,7 @@ $("#<%= params[:product_id] %>").remove();
 <% else %>
   $(".checkout").removeClass('hidden');
 <% end %>
-$("#product-quantity").html("<%= current_user.try(:cart_items).try(:length) || session[:cart].keys.length %>");
+$("#product-quantity").html("<%= cart_size %>");
 $(".total-price").html("<%= total_price %>");
 $("#notice").html('<div class="alert alert-danger">Removed from cart.</div>');
 setTimeout(function(){

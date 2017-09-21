@@ -1,5 +1,5 @@
-$("#product-quantity").html("<%= current_user.try(:cart_items).try(:length) || session[:cart].keys.length %>");
-$('#<%= params[:product_id] %> .product-price').html("<%= @cart_item.try(:price).try(:to_f) || session[:cart].fetch(params[:product_id], {}).fetch('price', '').to_f %>");
+$("#product-quantity").html("<%= cart_size %>");
+$('#<%= params[:product_id] %> .product-price').html("<%= total_product_price(@cart_item.presence || session[:cart][params[:product_id]]) %>")
 $(".total-price").html("<%= total_price %>");
 <% unless params[:quantity] %>
   $("#notice").html('<div class="alert alert-success">Added to cart.</div>');
