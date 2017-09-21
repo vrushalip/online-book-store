@@ -19,8 +19,8 @@
           <td>
             <%= cart_item.quantity %>
           </td>
-          <td><%= cart_item.product.price %></td>
-          <td><%= total_product_price(cart_item) %></td>
+          <td>$<%= cart_item.product.price %></td>
+          <td>$<%= total_product_price(cart_item) %></td>
         </tr>
       <% end %>
       <tr>
@@ -28,7 +28,7 @@
           Grand Total:
         </td>
         <td colspan="2" class='total-price'>
-          <%= total_price %>
+          $<%= total_price %>
         </td>
       </tr>
     <% else %>

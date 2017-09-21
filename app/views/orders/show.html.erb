@@ -12,7 +12,7 @@
         <td>
           <%= order_item.quantity %>
         </td>
-        <td><%= order_item.price %></td>
+        <td>$<%= order_item.price %></td>
       </tr>
     <% end %>
     <tr>
@@ -20,7 +20,7 @@
         Total Price:
       </td>
       <td colspan="2" class='total-price'>
-        <%= @order.total_price %>
+        $<%= @order.total_price %>
       </td>
     </tr> 
   </tbody>

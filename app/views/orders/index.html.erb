@@ -10,7 +10,7 @@
       <tr>
         <td><%= order.id %></td>
         <td><%= order.created_at.strftime("%d-%m-%y %H:%S") %></td>
-        <td><%= order.total_price %></td>
+        <td>$<%= order.total_price %></td>
         <td><%= link_to "View Details", order_path(order), class: 'btn btn-info' %></td>
       </tr>
     <% end %>
